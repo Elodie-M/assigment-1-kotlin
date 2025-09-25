@@ -69,7 +69,12 @@ fun GuessScreen(viewModel: GuessViewModel){
             style = MaterialTheme.typography.headlineLarge,
             color = MaterialTheme.colorScheme.onBackground)
         Spacer(modifier = Modifier.height(12.dp))
-        Text(text = uiState.message)
+        Text(text = uiState.message,
+            color = if (uiState.gameOver){
+                MaterialTheme.colorScheme.secondary
+            }else {
+                MaterialTheme.colorScheme.onPrimary
+            })
         Spacer(modifier = Modifier.height(20.dp))
         OutlinedTextField(
             value = input,
