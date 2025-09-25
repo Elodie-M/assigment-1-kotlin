@@ -63,7 +63,8 @@ fun GuessScreen(viewModel: GuessViewModel){
     ) {
         Text(
             text = "Guess a number",
-            style = MaterialTheme.typography.headlineLarge)
+            style = MaterialTheme.typography.headlineLarge,
+            color = MaterialTheme.colorScheme.onBackground)
         Spacer(modifier = Modifier.height(12.dp))
         Text(text = uiState.message)
         Spacer(modifier = Modifier.height(20.dp))
