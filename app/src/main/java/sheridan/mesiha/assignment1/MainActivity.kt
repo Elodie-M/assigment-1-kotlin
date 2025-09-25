@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.getValue
@@ -59,6 +60,7 @@ fun GuessScreen(viewModel: GuessViewModel){
         Text(text = "Guess a number", style = MaterialTheme.typography.headlineLarge)
         Spacer(modifier = Modifier.height(12.dp))
         Text(text = uiState.message)
+        Spacer(modifier = Modifier.height(20.dp))
         OutlinedTextField(
             value = input,
             onValueChange = {if (it.all {c -> c.isDigit()}) input = it},
@@ -66,5 +68,14 @@ fun GuessScreen(viewModel: GuessViewModel){
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             singleLine = true
         )
+        Spacer(modifier = Modifier.height(20.dp))
+        if (!uiState.gameOver){
+            Button(onClick = {
+                input.toIntOrNull()?.let {viewModel.makeGuess(it)}
+                input = ""
+            }) {Text("OK") }
+        } else {
+            Button(onClick = {viewModel.resetGame()}) { Text ("Play Again")}
+        }
     }
 }
