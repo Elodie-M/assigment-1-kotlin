@@ -1,5 +1,6 @@
 package sheridan.mesiha.assignment1.ui.theme
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import kotlin.random.Random

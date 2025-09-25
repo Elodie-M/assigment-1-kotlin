@@ -15,7 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import sheridan.mesiha.assignment1.ui.theme.Assigment1ElodieMesihaTheme
+//import sheridan.mesiha.assignment1.ui.theme.Assigment1ElodieMesihaTheme
 import sheridan.mesiha.assignment1.ui.theme.GuessViewModel
 import androidx.compose.ui.unit.dp
 import androidx.activity.viewModels
@@ -32,6 +32,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
+import sheridan.mesiha.assignment1.ui.theme.GuessNumberTheme
 
 class MainActivity : ComponentActivity() {
     private val viewModel: GuessViewModel by viewModels()
@@ -40,7 +42,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            GuessScreen(viewModel)
+            GuessNumberTheme {
+                GuessScreen(viewModel) }
+
         }
     }
 }
@@ -57,7 +61,9 @@ fun GuessScreen(viewModel: GuessViewModel){
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Guess a number", style = MaterialTheme.typography.headlineLarge)
+        Text(
+            text = "Guess a number",
+            style = MaterialTheme.typography.headlineLarge)
         Spacer(modifier = Modifier.height(12.dp))
         Text(text = uiState.message)
         Spacer(modifier = Modifier.height(20.dp))
