@@ -22,9 +22,15 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.runtime.setValue
 
 class MainActivity : ComponentActivity() {
     private val viewModel: GuessViewModel by viewModels()
@@ -41,6 +47,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GuessScreen(viewModel: GuessViewModel){
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    var input by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -52,5 +59,11 @@ fun GuessScreen(viewModel: GuessViewModel){
         Text(text = "Guess a number", style = MaterialTheme.typography.headlineLarge)
         Spacer(modifier = Modifier.height(12.dp))
         Text(text = uiState.message)
+        OutlinedTextField(
+            value = input,
+            onValueChange = {if (it.all {c -> c.isDigit()}) input = it},
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            singleLine = true
+        )
     }
 }
