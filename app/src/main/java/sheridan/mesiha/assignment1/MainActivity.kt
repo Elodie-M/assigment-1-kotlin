@@ -62,6 +62,7 @@ fun GuessScreen(viewModel: GuessViewModel){
         OutlinedTextField(
             value = input,
             onValueChange = {if (it.all {c -> c.isDigit()}) input = it},
+            label = { Text("Your guess (1–10)") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             singleLine = true
         )
